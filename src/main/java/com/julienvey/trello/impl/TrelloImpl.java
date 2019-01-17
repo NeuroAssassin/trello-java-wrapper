@@ -14,6 +14,7 @@ import static com.julienvey.trello.impl.TrelloUrl.GET_ACTION_LIST;
 import static com.julienvey.trello.impl.TrelloUrl.GET_ACTION_MEMBER;
 import static com.julienvey.trello.impl.TrelloUrl.GET_ACTION_MEMBER_CREATOR;
 import static com.julienvey.trello.impl.TrelloUrl.GET_ACTION_ORGANIZATION;
+import static com.julienvey.trello.impl.TrelloUrl.GET_BOARDS;
 import static com.julienvey.trello.impl.TrelloUrl.GET_BOARD;
 import static com.julienvey.trello.impl.TrelloUrl.GET_BOARD_ACTIONS;
 import static com.julienvey.trello.impl.TrelloUrl.GET_BOARD_CARD;
@@ -117,7 +118,16 @@ public class TrelloImpl implements Trello {
         }
         return actions;
     }
-
+    
+    @Override
+    public List<Board> getBoards() {
+        List<Board> boards = Arrays.asList(get(createUrl(GET_BOARDS).asString()));
+        for (Board board: boards) {
+            board.setInternalTrello(this);
+        }
+        return boards;
+    }
+    
     @Override
     public List<Card> getBoardCards(String boardId, Argument... args) {
         List<Card> cards = Arrays.asList(get(createUrl(GET_BOARD_CARDS).params(args).asString(), Card[].class, boardId));
