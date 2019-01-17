@@ -121,7 +121,7 @@ public class TrelloImpl implements Trello {
     
     @Override
     public List<Board> getBoards() {
-        List<Board> boards = Arrays.asList(get(createUrl(GET_BOARDS).asString()));
+        List<Board> boards = Arrays.asList(get(createUrl(GET_BOARDS).params().asString(), Board[].class));
         for (Board board: boards) {
             board.setInternalTrello(this);
         }
