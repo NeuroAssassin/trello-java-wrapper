@@ -7,6 +7,7 @@ public class TrelloUrl {
     public static final String API_URL = "https://api.trello.com/1";
     public static final String API_KEY_TOKEN_PARAM = "key={applicationKey}&token={userToken}";
 
+    public static final String GET_BOARDS = "/boards?"
     public static final String GET_BOARD = "/boards/{boardId}?";
     public static final String GET_BOARD_ACTIONS = "/boards/{boardId}/actions?";
     public static final String GET_BOARD_CARDS = "/boards/{boardId}/cards?";
